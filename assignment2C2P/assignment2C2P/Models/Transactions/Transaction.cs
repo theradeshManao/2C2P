@@ -21,12 +21,12 @@ namespace assignment2C2P.Models.Transactions
         {
             return new TransactionDto()
             {
-                TransactionId = t.TransactionId,
-                CurrencyCode = t.CurrencyCode,
+                Id = t.TransactionId,
+                Currency = t.CurrencyCode,
                 Amount = t.Amount.ToString(),
-                TransactionStatus = t.TransactionStatus.ToString(),
-                DateTime = t.DateTime.ToString()
-            };
+                Status = t.TransactionStatus.ToString(),
+                Date = t.DateTime.ToString("dd/MM/yyyy HH:MM")
+        };
         }
     }
 }

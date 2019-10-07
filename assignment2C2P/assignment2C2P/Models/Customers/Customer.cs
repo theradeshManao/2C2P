@@ -22,9 +22,9 @@ namespace assignment2C2P.Models.Customers
 
             return new CustomerDto()
             {
-                CustomerId = this.CustomerId,
+                CustomerID = this.CustomerId,
                 Name = this.Name,
-                MobileNumber = this.MobileNumber,
+                Mobile = this.MobileNumber,
                 Email = this.Email,
                 Transactions = transactions
             };
