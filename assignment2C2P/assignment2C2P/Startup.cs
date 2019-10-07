@@ -40,7 +40,7 @@ namespace assignment2C2P
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<AssignmentDB>(item => item.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
@@ -50,6 +50,8 @@ namespace assignment2C2P
             {
                 c.SwaggerDoc("v1", new Info { Title = "API of 2C2P Assignment", Version = "v1" });
             });
+
+            return this.ConfigureIoC(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

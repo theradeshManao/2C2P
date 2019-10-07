@@ -5,5 +5,9 @@ namespace assignment2C2P.IoC
 {
     public class StructureMap : Registry
     {
+        public StructureMap()
+        {
+            For<IRepository>().Use<Repository>();
+        }
     }
 }
