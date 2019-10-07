@@ -10,5 +10,6 @@ namespace assignment2C2P.Infrastructure.EF.Repositories
     {
         Task<Customer> GetByCustomerId(int customerId);
         Task<Customer> GetByEmail(string email);
+        Task<Customer> GetByCustomerIdAndEmail(int customerId, string email);
     }
 }

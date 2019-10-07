@@ -21,7 +21,7 @@ namespace assignment2C2P.Infrastructure.EF.Repositories
             var customer = await context.Customers
                 .Include(t => t.Transactions)
                 .SingleOrDefaultAsync(c => c.CustomerId == customerId);
-            customer?.Transactions?.OrderByDescending(x => x.CustomerId).Take(5).ToList();
+            customer?.Transactions?.OrderByDescending(c => c.CustomerId).Take(5).ToList();
             return customer;
         }
 
@@ -30,7 +30,16 @@ namespace assignment2C2P.Infrastructure.EF.Repositories
             var customer = await context.Customers
                 .Include(t => t.Transactions)
                 .SingleOrDefaultAsync(c => c.Email == email);
-            customer?.Transactions?.OrderByDescending(x => x.CustomerId).Take(5).ToList();
+            customer?.Transactions?.OrderByDescending(c => c.CustomerId).Take(5).ToList();
+            return customer;
+        }
+
+        public async Task<Customer> GetByCustomerIdAndEmail(int customerId, string email)
+        {
+            var customer = await context.Customers
+                .Include(t => t.Transactions)
+                .SingleOrDefaultAsync(c => c.CustomerId == customerId && c.Email == email);
+            customer?.Transactions?.OrderByDescending(c => c.CustomerId).Take(5).ToList();
             return customer;
         }
     }
