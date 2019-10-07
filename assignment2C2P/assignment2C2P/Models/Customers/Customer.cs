@@ -1,5 +1,6 @@
 ﻿using assignment2C2P.Models.Transactions;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace assignment2C2P.Models.Customers
 {
@@ -16,8 +17,11 @@ namespace assignment2C2P.Models.Customers
             var transactions = new List<TransactionDto>();
             foreach (var t in this.Transactions)
             {
-                var dto = Transaction.TransactionToDTO(t);
-                transactions.Add(dto);
+                if (transactions.Count < 5)
+                {
+                    var dto = Transaction.TransactionToDTO(t);
+                    transactions.Add(dto);
+                }
             }
 
             return new CustomerDto()
