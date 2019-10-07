@@ -67,7 +67,7 @@ namespace assignment2C2P.Validations
             }
         }
 
-        ValidationTest ValidateCustomerIdAndEmail(string email, int customerId)
+        public ValidationTest ValidateCustomerIdAndEmail(string email, int customerId)
         {
             if (!ValidateCustomerId(customerId).Success)
             {
