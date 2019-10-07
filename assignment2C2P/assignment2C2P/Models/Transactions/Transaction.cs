@@ -16,5 +16,17 @@ namespace assignment2C2P.Models.Transactions
         public TransactionStatus TransactionStatus { get; set; } // have 3 chars
         public long CustomerId { get; set; }
         public Customer Customer { get; set; }
+
+        public static TransactionDto TransactionToDTO(Transaction t)
+        {
+            return new TransactionDto()
+            {
+                TransactionId = t.TransactionId,
+                CurrencyCode = t.CurrencyCode,
+                Amount = t.Amount.ToString(),
+                TransactionStatus = t.TransactionStatus.ToString(),
+                DateTime = t.DateTime.ToString()
+            };
+        }
     }
 }
