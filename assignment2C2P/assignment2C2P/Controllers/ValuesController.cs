@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using assignment2C2P.Infrastructure.EF.Repositories;
 using assignment2C2P.Models.Customers;
+using assignment2C2P.Models.Responses;
+using assignment2C2P.Validations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace assignment2C2P.Controllers
@@ -13,20 +15,31 @@ namespace assignment2C2P.Controllers
     public class ValuesController : ControllerBase
     {
         private IRepository repository;
+        private IValidation validation;
 
-        public ValuesController(IRepository repository)
+        public ValuesController(IRepository repository, IValidation validation)
         {
             this.repository = repository;
+            this.validation = validation;
         }
 
         [HttpPost("GetByCustomerId")]
-        public async Task<ActionResult<CustomerDto>> GetByCustomerId(int customerId)
+        public async Task<ActionResult<Response<CustomerDto>>> GetByCustomerId(int customerId)
         {
+            var validateTest = validation.ValidateCustomerId(customerId);
+            if (validateTest.Success != true)
+            {
+                var errorMessage = Response<CustomerDto>.SendResposeError(validateTest);
+                return BadRequest(errorMessage);
+
+            }
+
             var customer = await repository.GetByCustomerId(customerId);
             if (customer != null)
             {
                 var dto = customer.CustomerToDto();
-                return dto;
+                var response = Response<CustomerDto>.SendRespose(dto, true);
+                return response;
             }
             return NotFound();
         }
