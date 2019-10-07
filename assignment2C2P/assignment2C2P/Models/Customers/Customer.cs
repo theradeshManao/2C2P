@@ -1,8 +1,5 @@
 ﻿using assignment2C2P.Models.Transactions;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace assignment2C2P.Models.Customers
 {
@@ -13,5 +10,24 @@ namespace assignment2C2P.Models.Customers
         public string Email { get; set; } //Character max 25 digits
         public string MobileNumber { get; set; } // Numeric only 10 digits
         public ICollection<Transaction> Transactions { get; set; } = new List<Transaction>(); // max 5 records
+
+        public CustomerDto CustomerToDto()
+        {
+            var transactions = new List<TransactionDto>();
+            foreach (var t in this.Transactions)
+            {
+                var dto = Transaction.TransactionToDTO(t);
+                transactions.Add(dto);
+            }
+
+            return new CustomerDto()
+            {
+                CustomerId = this.CustomerId,
+                Name = this.Name,
+                MobileNumber = this.MobileNumber,
+                Email = this.Email,
+                Transactions = transactions
+            };
+        }
     }
 }
