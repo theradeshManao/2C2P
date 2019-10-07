@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using StructureMap;
+using assignment2C2P.IoC;
 
 namespace assignment2C2P
 {
@@ -21,6 +23,17 @@ namespace assignment2C2P
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        }
+
+        public virtual IServiceProvider ConfigureIoC(IServiceCollection services)
+        {
+            var container = new Container();
+            container.Configure(config =>
+            {
+                config.AddRegistry(new assignment2C2P.IoC.StructureMap());
+                config.Populate(services);
+            });
+            return container.GetInstance<IServiceProvider>();
         }
 
         public IConfiguration Configuration { get; }
