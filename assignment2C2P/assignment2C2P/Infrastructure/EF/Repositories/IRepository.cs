@@ -9,5 +9,6 @@ namespace assignment2C2P.Infrastructure.EF.Repositories
     public interface IRepository
     {
         Task<Customer> GetByCustomerId(int customerId);
+        Task<Customer> GetByEmail(string email);
     }
 }
