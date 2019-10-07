@@ -19,7 +19,9 @@ namespace assignment2C2P.Infrastructure.EF.Repositories
         public async Task<Customer> GetByCustomerId(int customerId)
         {
             var customer = await context.Customers
+                .Include(t => t.Transactions)
                 .SingleOrDefaultAsync(c => c.CustomerId == customerId);
+            customer?.Transactions?.OrderByDescending(x => x.CustomerId).Take(5).ToList();
             return customer;
         }
 
