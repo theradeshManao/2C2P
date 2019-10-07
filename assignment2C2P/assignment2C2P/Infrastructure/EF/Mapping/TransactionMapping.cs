@@ -13,8 +13,8 @@ namespace assignment2C2P.Infrastructure.EF.Mapping
         {
             var entity = modelBuilder.Entity<Transaction>();
             entity.ToTable("Transactions");
-            entity.Property(c => c.CurrencyCode).HasMaxLength(3);
-            entity.Property(c => c.TransactionId).ValueGeneratedOnAdd();
+            entity.Property(t => t.CurrencyCode).HasMaxLength(3);
+            entity.Property(t => t.TransactionId).ValueGeneratedOnAdd();
             return modelBuilder;
         }
     }
