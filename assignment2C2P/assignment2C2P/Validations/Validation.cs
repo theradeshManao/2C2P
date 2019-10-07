@@ -79,5 +79,16 @@ namespace assignment2C2P.Validations
             }
             return ReturnValidationTest(success, message);
         }
+
+        public ValidationTest ValidateCustomerIdAndEmailAreEmpty(string email, int customerId)
+        {
+            if (string.IsNullOrEmpty(email) && customerId == 0)
+            {
+                success = false;
+                message = NO_INQUIRY_CRITERIA;
+                return ReturnValidationTest(success, message);
+            }
+            return ReturnValidationTest(success, message);
+        }
     }
 }
