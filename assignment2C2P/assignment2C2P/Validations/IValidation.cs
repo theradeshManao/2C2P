@@ -11,6 +11,5 @@ namespace assignment2C2P.Validations
         ValidationTest ValidateCustomerId(int customerId);
         ValidationTest ValidateEmail(string email);
         ValidationTest ValidateCustomerIdAndEmail(string email, int customerId);
-        ValidationTest ValidateCustomerIdAndEmailAreEmpty(string email, int customerId);
     }
 }

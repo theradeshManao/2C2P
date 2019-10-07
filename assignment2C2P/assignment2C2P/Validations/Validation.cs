@@ -48,7 +48,7 @@ namespace assignment2C2P.Validations
             if (string.IsNullOrEmpty(email))
             {
                 success = false;
-                message = INVALID_EMAIL;
+                message = NO_INQUIRY_CRITERIA;
                 return ReturnValidationTest(success, message);
             }
             else
@@ -69,6 +69,13 @@ namespace assignment2C2P.Validations
 
         public ValidationTest ValidateCustomerIdAndEmail(string email, int customerId)
         {
+            if (string.IsNullOrEmpty(email) && customerId == 0)
+            {
+                success = false;
+                message = NO_INQUIRY_CRITERIA;
+                return ReturnValidationTest(success, message);
+            }
+
             if (!ValidateCustomerId(customerId).Success)
             {
                 return ValidateCustomerId(customerId);
@@ -76,17 +83,6 @@ namespace assignment2C2P.Validations
             if (!ValidateEmail(email).Success)
             {
                 return ValidateEmail(email);
-            }
-            return ReturnValidationTest(success, message);
-        }
-
-        public ValidationTest ValidateCustomerIdAndEmailAreEmpty(string email, int customerId)
-        {
-            if (string.IsNullOrEmpty(email) && customerId == 0)
-            {
-                success = false;
-                message = NO_INQUIRY_CRITERIA;
-                return ReturnValidationTest(success, message);
             }
             return ReturnValidationTest(success, message);
         }
