@@ -20,34 +20,37 @@ namespace assignment2C2P.Controllers
         }
 
         [HttpPost("GetByCustomerId")]
-        public async Task<ActionResult<Customer>> GetByCustomerId(int customerId)
+        public async Task<ActionResult<CustomerDto>> GetByCustomerId(int customerId)
         {
             var customer = await repository.GetByCustomerId(customerId);
             if (customer != null)
             {
-                return customer;
+                var dto = customer.CustomerToDto();
+                return dto;
             }
             return NotFound();
         }
 
         [HttpPost("GetByEmail")]
-        public async Task<ActionResult<Customer>> GetByEmail(string email)
+        public async Task<ActionResult<CustomerDto>> GetByEmail(string email)
         {
             var customer = await repository.GetByEmail(email);
             if (customer != null)
             {
-                return customer;
+                var dto = customer.CustomerToDto();
+                return dto;
             }
             return NotFound();
         }
 
         [HttpPost("GetByCustomerIdAndEmail")]
-        public async Task<ActionResult<Customer>> GetByCustomerIdAndEmail(int customerId, string email)
+        public async Task<ActionResult<CustomerDto>> GetByCustomerIdAndEmail(int customerId, string email)
         {
             var customer = await repository.GetByCustomerIdAndEmail(customerId, email);
             if (customer != null)
             {
-                return customer;
+                var dto = customer.CustomerToDto();
+                return dto;
             }
             return NotFound();
         }
