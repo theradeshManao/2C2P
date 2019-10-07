@@ -31,7 +31,6 @@ namespace assignment2C2P.Controllers
             {
                 var errorMessage = Response<CustomerDto>.SendResposeError(validateTest);
                 return BadRequest(errorMessage);
-
             }
 
             var customer = await repository.GetByCustomerId(customerId);
@@ -45,25 +44,41 @@ namespace assignment2C2P.Controllers
         }
 
         [HttpPost("GetByEmail")]
-        public async Task<ActionResult<CustomerDto>> GetByEmail(string email)
+        public async Task<ActionResult<Response<CustomerDto>>> GetByEmail(string email)
         {
+            var validateTest = validation.ValidateEmail(email);
+            if (validateTest.Success != true)
+            {
+                var errorMessage = Response<CustomerDto>.SendResposeError(validateTest);
+                return BadRequest(errorMessage);
+            }
+
             var customer = await repository.GetByEmail(email);
             if (customer != null)
             {
                 var dto = customer.CustomerToDto();
-                return dto;
+                var response = Response<CustomerDto>.SendRespose(dto, true);
+                return response;
             }
             return NotFound();
         }
 
         [HttpPost("GetByCustomerIdAndEmail")]
-        public async Task<ActionResult<CustomerDto>> GetByCustomerIdAndEmail(int customerId, string email)
+        public async Task<ActionResult<Response<CustomerDto>>> GetByCustomerIdAndEmail(int customerId, string email)
         {
+            var validateTest = validation.ValidateCustomerIdAndEmail(email, customerId);
+            if (validateTest.Success != true)
+            {
+                var errorMessage = Response<CustomerDto>.SendResposeError(validateTest);
+                return BadRequest(errorMessage);
+            }
+
             var customer = await repository.GetByCustomerIdAndEmail(customerId, email);
             if (customer != null)
             {
                 var dto = customer.CustomerToDto();
-                return dto;
+                var response = Response<CustomerDto>.SendRespose(dto, true);
+                return response;
             }
             return NotFound();
         }
