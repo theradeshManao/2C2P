@@ -33,8 +33,7 @@ namespace assignment2C2P.Validations
 
         public ValidationTest ValidateCustomerId(int customerId)
         {
-
-            if (customerId < 0)
+            if (customerId <= 0)
             {
                 success = false;
                 message = INVALID_CUSTOMER_ID;
@@ -48,7 +47,7 @@ namespace assignment2C2P.Validations
             if (string.IsNullOrEmpty(email))
             {
                 success = false;
-                message = NO_INQUIRY_CRITERIA;
+                message = INVALID_EMAIL;
                 return ReturnValidationTest(success, message);
             }
             else
