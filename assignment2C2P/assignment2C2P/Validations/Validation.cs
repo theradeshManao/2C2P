@@ -79,6 +79,7 @@ namespace assignment2C2P.Validations
             {
                 return ValidateCustomerId(customerId);
             }
+
             if (!ValidateEmail(email).Success)
             {
                 return ValidateEmail(email);
