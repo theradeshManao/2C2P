@@ -1,7 +1,4 @@
-﻿
-using System.Linq;
-using System.Threading.Tasks;
-using assignment2C2P.Infrastructure.EF.Repositories;
+﻿using System.Threading.Tasks;
 using assignment2C2P.Models.Customers;
 using Microsoft.EntityFrameworkCore;
 

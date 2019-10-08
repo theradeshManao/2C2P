@@ -1,9 +1,5 @@
 ﻿using assignment2C2P.Models.Transactions;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace assignment2C2P.Infrastructure.EF.Mapping
 {

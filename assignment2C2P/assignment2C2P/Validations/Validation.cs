@@ -1,9 +1,6 @@
 ﻿using assignment2C2P.Models.ValidationTests;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Threading.Tasks;
 
 namespace assignment2C2P.Validations
 {

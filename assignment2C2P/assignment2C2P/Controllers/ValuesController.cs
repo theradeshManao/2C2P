@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using assignment2C2P.Infrastructure.EF.Repositories;
 using assignment2C2P.Models.Customers;
 using assignment2C2P.Models.Responses;
